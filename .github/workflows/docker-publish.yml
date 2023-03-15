@@ -23,7 +23,7 @@ jobs:
       major: ${{ steps.version.outputs.major }}
       minor: ${{ steps.version.outputs.minor }}
       patch: ${{ steps.version.outputs.patch }}
-      custom_date: ${{ steps.version.outputs.CUSTOM_DATE }}
+      custom_date: ${{ steps.version.outputs.custom_date }}
     steps:
       - name: Check out the codebase
         uses: actions/checkout@v3
@@ -34,7 +34,7 @@ jobs:
           echo "major=1" >> "$GITHUB_OUTPUT"
           echo "minor=22" >> "$GITHUB_OUTPUT"
           echo "patch=1" >> "$GITHUB_OUTPUT"
-          echo "CUSTOM_DATE=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+          echo "custom_date=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
       
   build:
     name: Build NGINX stable version
@@ -90,7 +90,7 @@ jobs:
           platforms: linux/aarch64
           context: "{{ defaultContext }}:aarch64"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged-aarch64:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}
+          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged-aarch64:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}, ghcr.io/reli4ble/nginx-minimal-unprivileged-aarch64:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max    
 
