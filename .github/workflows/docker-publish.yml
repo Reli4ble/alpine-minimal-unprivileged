@@ -72,16 +72,27 @@ jobs:
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
-      - name: Build and push Docker image
-        id: build-and-push
+      - name: Build and push Docker image x86_64
+        id: build-and-push-x86_64
         uses: docker/build-push-action@v4
         with:
           platforms: linux/amd64
           context: "{{ defaultContext }}:x86_64"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}
+          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged-x86_64:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          
+      - name: Build and push Docker image aarch64
+        id: build-and-push-aarch64
+        uses: docker/build-push-action@v4
+        with:
+          platforms: linux/amd64
+          context: "{{ defaultContext }}:aarch64"
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged-aarch64:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max    
 
 
       
