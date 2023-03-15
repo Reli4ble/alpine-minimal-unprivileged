@@ -23,6 +23,13 @@ env:
 
 
 jobs:
+  version:
+    name: Fetch NGINX stable version
+    runs-on: ubuntu-22.04
+    outputs:
+      major: 1
+      minor: 22
+      patch: 1
   build:
 
     runs-on: ubuntu-latest
@@ -71,8 +78,8 @@ jobs:
           platforms: linux/amd64
           context: "{{ defaultContext }}:x86_64"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ghcr.io/reli4ble/alpine-minimal-unprivileged:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}-alpine
+      #    labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
