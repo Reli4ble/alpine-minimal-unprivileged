@@ -1,1 +1,1 @@
-# alpine-minimal-unprivileged
+# nginx-minimal-unprivileged
