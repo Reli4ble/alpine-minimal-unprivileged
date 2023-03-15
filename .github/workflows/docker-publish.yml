@@ -30,8 +30,11 @@ jobs:
       major: 1
       minor: 22
       patch: 1
+    steps:
+      - name: Check out the codebase
+        uses: actions/checkout@v3  
+      
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
