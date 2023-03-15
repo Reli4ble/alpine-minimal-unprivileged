@@ -1,7 +1,8 @@
 FROM scratch AS builder
 
 ARG ARCH=x86_64
-ADD alpine-minirootfs-3.17.2-${ARCH}.tar.gz /
+ARG ALPINE_VERSION=3.17.2
+ADD alpine-minirootfs-${ALPINE_VERSION}-${ARCH}.tar.gz /
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
