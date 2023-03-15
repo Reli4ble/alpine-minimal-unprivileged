@@ -79,7 +79,7 @@ jobs:
           platforms: linux/amd64
           context: "{{ defaultContext }}:x86_64"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged-x86_64:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}
+          tags: ghcr.io/reli4ble/nginx-minimal-unprivileged-x86_64:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}_${{ needs.version.outputs.custom_date }}, ghcr.io/reli4ble/nginx-minimal-unprivileged-x86_64:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           
