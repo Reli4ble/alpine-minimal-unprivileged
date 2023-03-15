@@ -24,15 +24,22 @@ env:
 
 jobs:
   version:
-    name: Fetch NGINX stable version
+    name: NGINX stable version
     runs-on: ubuntu-22.04
     outputs:
-      major: 1
-      minor: 22
-      patch: 1
+      major: ${{ steps.version.outputs.major }}
+      minor: ${{ steps.version.outputs.minor }}
+      patch: ${{ steps.version.outputs.patch }}
     steps:
       - name: Check out the codebase
-        uses: actions/checkout@v3  
+        uses: actions/checkout@v3
+        
+      - name: Parse NGINX stable version
+        id: version
+        run: |
+          echo "major=1" >> "$GITHUB_OUTPUT"
+          echo "minor=22" >> "$GITHUB_OUTPUT"
+          echo "patch=1" >> "$GITHUB_OUTPUT"  
       
   build:
     runs-on: ubuntu-latest
