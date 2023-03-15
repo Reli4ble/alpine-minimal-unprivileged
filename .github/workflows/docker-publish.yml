@@ -78,8 +78,8 @@ jobs:
           platforms: linux/amd64
           context: "{{ defaultContext }}:x86_64"
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/reli4ble/alpine-minimal-unprivileged:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}-alpine
-      #    labels: ${{ steps.meta.outputs.labels }}
+          tags: ghcr.io/reli4ble/alpine-minimal-unprivileged:${{ needs.version.outputs.major }}.${{ needs.version.outputs.minor }}.${{ needs.version.outputs.patch }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
