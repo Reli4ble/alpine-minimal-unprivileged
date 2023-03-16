@@ -27,6 +27,7 @@ This NGINX image is only provided for the following platforms
 
 # Usage:
 
+@work
 
 # Config:
 
