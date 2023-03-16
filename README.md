@@ -30,7 +30,14 @@ This NGINX image is only provided for the following platforms
 
 # Config:
 
-This Image comes with the default /etc/nginx/nginx.conf & /etc/nginx/conf.d/default.conf
+This NGINX image is delivered with the standard config for a web server but has also received small changes to be able to run completely unprivileged in a container:
+
+- removed `user  nginx;` from /etc/nginx/nginx.conf but this makes no sense
+- move `/var/run/nginx.pid` to `/tmp/nginx.pid`
+- all nginx-processes - master & worker runs under user nginx
+- access & error-logs linked to `/dev/stdout`
+- default http-port changed to `8080`
+- changed owner/mod of nginx etc & cache-directory to run unprivileged
 
 ### /etc/nginx/nginx.conf:
 ```
