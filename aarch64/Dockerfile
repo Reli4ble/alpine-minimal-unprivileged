@@ -41,9 +41,9 @@ RUN apk add openssl curl ca-certificates --no-cache && \
 # ---------------------------------------------------------------------    
 # nginx user must own the cache and etc directory to write cache and tweak the nginx config
 # ---------------------------------------------------------------------
-    chown -R $UID:0 /var/cache/nginx && \
+    chown -R nginx:0 /var/cache/nginx && \
     chmod -R g+w /var/cache/nginx && \
-    chown -R $UID:0 /etc/nginx && \
+    chown -R nginx:0 /etc/nginx && \
     chmod -R g+w /etc/nginx && \
 # ---------------------------------------------------------------------    
 # forward request and error logs to stdout
